@@ -4,6 +4,7 @@ import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrow
 import { useState } from "react";
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CenterFocusStrongIcon from '@mui/icons-material/CenterFocusStrong';
 
 export default function Sidenav(props) {
     const [open, setopen] = useState(false)
@@ -11,7 +12,6 @@ export default function Sidenav(props) {
     const [marker1, setmarker1] = useState(false)
     const [marker2, setmarker2] = useState(false)
     const [marker3, setmarker3] = useState(false)
-    const [marker4, setmarker4] = useState(false)
     const toggleOpen = () => {
         setopen(!open)
     }
@@ -31,34 +31,43 @@ export default function Sidenav(props) {
         setmarker3(!marker3)
         props.toggle(3)
     }
+    const toggleCenter = () => {
+        props.recenter()
+    }
   return (
     <div className={open?styles.sidenav:styles.sidenavClosed}>
         <button className={styles.menuBtn} onClick={toggleOpen}>
             {open? <KeyboardDoubleArrowLeftIcon />: <KeyboardDoubleArrowRightIcon />}
         </button>
         <div className={styles.sideitem}>
-            <button className={styles.marker1} onClick={toggleMarker0}>
+            <button className={styles.marker0} onClick={toggleMarker0}>
                 {marker0? <CheckBoxIcon/> :<CheckBoxOutlineBlankIcon/>}
             </button>
             <span className={styles.linkText}>Accommodation</span>
         </div>
         <div className={styles.sideitem}>
-            <button className={styles.marker2} onClick={toggleMarker1}>
+            <button className={styles.marker1} onClick={toggleMarker1}>
                 {marker1? <CheckBoxIcon/> :<CheckBoxOutlineBlankIcon/>}
             </button>
             <span className={styles.linkText}>Tourism</span>
         </div>
         <div className={styles.sideitem}>
-            <button className={styles.marker3} onClick={toggleMarker2}>
+            <button className={styles.marker2} onClick={toggleMarker2}>
                 {marker2? <CheckBoxIcon/> :<CheckBoxOutlineBlankIcon/>}
             </button>
             <span className={styles.linkText}>Historical</span>
         </div>
         <div className={styles.sideitem}>
-            <button className={styles.marker4} onClick={toggleMarker3}>
+            <button className={styles.marker3} onClick={toggleMarker3}>
                 {marker3? <CheckBoxIcon/> :<CheckBoxOutlineBlankIcon/>}
             </button>
             <span className={styles.linkText}>Business</span>
+        </div>
+        <div className={styles.sideitem}>
+            <button className={styles.marker4} onClick={toggleCenter}>
+                <CenterFocusStrongIcon/>
+            </button>
+            <span className={styles.linkText}>Recenter</span>
         </div>
     </div>
   )

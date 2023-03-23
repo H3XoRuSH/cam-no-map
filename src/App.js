@@ -14,6 +14,12 @@ function App() {
     center_lat: 14.12175226941637,
     mark: [0, 0, 0, 0]
   })
+
+  const [myCenter, setMyCenter] = useState({
+    latitude: 14.12175226941637,
+    longitude: 122.94582373167115,
+    zoom: 14
+  })
   
   const toggle = (idx) => {
     setMyState(curState => {
@@ -26,14 +32,24 @@ function App() {
     })
   }
 
-  return (
-    <div position="relative">
-      <Map
-      initialViewState={{
+  const recenter = () => {
+    setMyCenter(() => {
+      return {
         latitude: 14.12175226941637,
         longitude: 122.94582373167115,
         zoom: 14
-      }} 
+      }
+    })
+  }
+
+  function openInNewTab(url) {
+    window.open(url, '_blank').focus();
+  }
+  return (
+    <div position="relative">
+      <Map
+      {...myCenter}
+      onMove={evt => setMyCenter(evt.myCenter)}
       style={{position: 'absolute'}}
       mapStyle="mapbox://styles/mapbox/satellite-streets-v11"
       mapboxAccessToken={MAPBOX_TOKEN}
@@ -41,30 +57,66 @@ function App() {
       {
        myState.mark[0] && 
        locations[0].map(item => {
-        return <Marker longitude={item.long} latitude={item.lat} color="#C23B23"/>
+        return <Marker longitude={item.long} latitude={item.lat} color="#C23B23" onClick={() => {
+          let txt = "Do you want to visit " + item.name + " in Google Maps?";
+          if (item.link.slice(-1) !== '/') {
+            item.link += '/';
+          }
+
+          if (window.confirm(txt) === true) {
+            openInNewTab(item.link + item.data);
+          }
+        }}/>
        })
       }
       {
        myState.mark[1] && 
        locations[1].map(item => {
-        return <Marker longitude={item.long} latitude={item.lat} color="#03C03C"/>
+        return <Marker longitude={item.long} latitude={item.lat} color="#03C03C" onClick={() => {
+          let txt = "Do you want to visit " + item.name + " in Google Maps?";
+          if (item.link.slice(-1) !== '/') {
+            item.link += '/';
+          }
+
+          if (window.confirm(txt) === true) {
+            openInNewTab(item.link + item.data);
+          }
+        }}/>
        })
       }
       {
        myState.mark[2] && 
        locations[2].map(item => {
-        return <Marker longitude={item.long} latitude={item.lat} color="#579ABE"/>
+        return <Marker longitude={item.long} latitude={item.lat} color="#579ABE" onClick={() => {
+          let txt = "Do you want to visit " + item.name + " in Google Maps?";
+          if (item.link.slice(-1) !== '/') {
+            item.link += '/';
+          }
+
+          if (window.confirm(txt) === true) {
+            openInNewTab(item.link + item.data);
+          }
+        }}/>
        })
       }
       {
        myState.mark[3] && 
        locations[3].map(item => {
-        return <Marker longitude={item.long} latitude={item.lat} color="#976ED7"/>
+        return <Marker longitude={item.long} latitude={item.lat} color="#976ED7" onClick={() => {
+          let txt = "Do you want to visit " + item.name + " in Google Maps?";
+          if (item.link.slice(-1) !== '/') {
+            item.link += '/';
+          }
+
+          if (window.confirm(txt) === true) {
+            openInNewTab(item.link + item.data);
+          }
+          }}/>
        })
       }
       
     </Map>
-    <Sidenav toggle={toggle} />
+    <Sidenav toggle={toggle} recenter={recenter}/>
     </div>
   );
 }

@@ -52,7 +52,7 @@
     cursor: pointer;
 }
 
-.marker1 {
+.marker0 {
     align-self: center;
     align-self: flex-start;  
     justify-self: flex-end;
@@ -63,7 +63,7 @@
     
 }
 
-.marker2 {
+.marker1 {
     align-self: center;
     align-self: flex-start;  
     justify-self: flex-end;
@@ -73,7 +73,7 @@
     color: #03C03C;
 }
 
-.marker3 {
+.marker2 {
     align-self: center;
     align-self: flex-start;  
     justify-self: flex-end;
@@ -83,7 +83,7 @@
     color: #579ABE;
 }
 
-.marker4 {
+.marker3 {
     align-self: center;
     align-self: flex-start;  
     justify-self: flex-end;
@@ -91,4 +91,14 @@
     border: none;
     cursor: pointer;
     color: #976ED7;
+}
+
+.marker4 {
+    align-self: center;
+    align-self: flex-start;  
+    justify-self: flex-end;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
 }
