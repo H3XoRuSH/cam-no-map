@@ -13,6 +13,14 @@ Our group blog can be found [here](https://anven-virae.notion.site/Anven-Virae-G
 
 Currently, this is a prototype. The main feature of this prototype is that it classifies the map of Daet, Camarines Norte (the center of Camarines Norte) into spots of accommodation, tourism, historical and business. This can be done via checkboxes on a sidebar.
 
+Features to be Done:
+
+- [x] Map Itself
+- [x] Markers for Different Categories
+- [x] Recenter
+- [ ] Find Distances
+- [ ] Recommend Tours
+
 ## Available Scripts
 
 In the project directory, you can run:
