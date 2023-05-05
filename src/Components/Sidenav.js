@@ -46,7 +46,6 @@ export default function Sidenav(props) {
     const toggleDest = () => {
         setopen(true)
         setmarker4(!marker4)
-        props.recenter()
     }
     const toggleDist = () => {
         setmarker5(!marker5)
