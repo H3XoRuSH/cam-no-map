@@ -19,7 +19,7 @@ Features to be Done:
 - [x] Markers for Different Categories
 - [x] Recenter
 - [ ] Find Distances
-- [ ] Recommend Tours
+- [X] Recommend Tours
 
 ## Available Scripts
 
