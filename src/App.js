@@ -20,7 +20,19 @@ function App() {
     longitude: 122.94582373167115,
     zoom: 14
   })
+
+  const [myCursor, setMyCursor] = useState('auto')
   
+  const [myMove, setMyMove] = useState(true)
+
+  const changeCursor = (open) => {
+    if (!open) {
+      setMyCursor('crosshair')
+    }
+    else {
+      setMyCursor('auto')
+    }
+  }
   const toggle = (idx) => {
     setMyState(curState => {
       const newMark = [...curState.mark]
@@ -31,8 +43,26 @@ function App() {
       }
     })
   }
-
   const recenter = () => {
+    // let curlat = myCenter.latitude
+    // let latdlt = (14.12175226941637 - curlat) / 10
+    // let curlng = myCenter.longitude
+    // let lngdlt = (122.94582373167115 - curlng) / 10
+
+    // for (let i = 0; i < 10; i++) {
+    //   setMyCenter(() => {
+    //     return {
+    //       latitude: curlat,
+    //       longitude: curlng,
+    //       zoom: 14
+    //     }
+    //   })
+    //   console.log(curlat)
+    //   console.log(curlng)
+    //   curlat += latdlt
+    //   curlng += lngdlt
+    // } 
+    setMyMove(false)   
     setMyCenter(() => {
       return {
         latitude: 14.12175226941637,
@@ -40,6 +70,7 @@ function App() {
         zoom: 14
       }
     })
+    setMyMove(true) 
   }
 
   function openInNewTab(url) {
@@ -49,10 +80,14 @@ function App() {
     <div position="relative">
       <Map
       {...myCenter}
-      onMove={evt => setMyCenter(evt.myCenter)}
+      onMove={evt => {
+        if (myMove) setMyCenter(evt.myCenter)
+      }}
+      cursor={myCursor}
       style={{position: 'absolute'}}
-      mapStyle="mapbox://styles/mapbox/satellite-streets-v11"
+      mapStyle="mapbox://styles/mapbox/streets-v12"
       mapboxAccessToken={MAPBOX_TOKEN}
+      maxBounds={[[122.88442984186148, 14.069630830595269], [123.00749755138419, 14.150878204011192]]}
     >
       {
        myState.mark[0] && 
@@ -116,7 +151,7 @@ function App() {
       }
       
     </Map>
-    <Sidenav toggle={toggle} recenter={recenter}/>
+    <Sidenav toggle={toggle} recenter={recenter} changeCursor={changeCursor}/>
     </div>
   );
 }
