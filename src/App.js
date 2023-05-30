@@ -3,6 +3,7 @@ import Map, {Marker} from 'react-map-gl';
 import React, { useState } from 'react';
 import Sidenav from './Components/Sidenav';
 import { locations } from "./lib/navData";
+import Recobox from './Components/Recobox';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -152,9 +153,11 @@ function App() {
       
     </Map>
     <Sidenav toggle={toggle} recenter={recenter} changeCursor={changeCursor}/>
+    <Recobox />
     </div>
   );
 }
+
 
 
 export default App;
