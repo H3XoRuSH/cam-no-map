@@ -50,6 +50,7 @@ export default function Sidenav(props) {
     const toggleDist = () => {
         setmarker5(!marker5)
         props.changeCursor(marker5)
+        props.toggle(4)
     }
     const isNumeric = (value) => {
         return /^\d+$/.test(value);
