@@ -12,7 +12,7 @@ function App() {
   const [myState, setMyState] = useState({
     center_long: 122.94582373167115,
     center_lat: 14.12175226941637,
-    mark: [0, 0, 0, 0]
+    mark: [0, 0, 0, 0, 0]
   })
 
   const [myCenter, setMyCenter] = useState({
@@ -76,6 +76,27 @@ function App() {
   function openInNewTab(url) {
     window.open(url, '_blank').focus();
   }
+
+  function dist(lat1, lon1, lat2, lon2) {
+      var R = 6371000; // meters
+      var dLat = toRad(lat2-lat1);
+      var dLon = toRad(lon2-lon1);
+      var lat1 = toRad(lat1);
+      var lat2 = toRad(lat2);
+
+      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      var d = R * c;
+      return d.toFixed(2);
+    }
+  
+  function toRad(Value) {
+      return Value * Math.PI / 180;
+  }
+
+  const click = [];
+
   return (
     <div position="relative">
       <Map
@@ -92,61 +113,101 @@ function App() {
       {
        myState.mark[0] && 
        locations[0].map(item => {
-        return <Marker longitude={item.long} latitude={item.lat} color="#C23B23" onClick={() => {
-          let txt = "Do you want to visit " + item.name + " in Google Maps?";
-          if (item.link.slice(-1) !== '/') {
-            item.link += '/';
-          }
+        return <Marker longitude={item.long} latitude={item.lat} color="#C23B23" onClick={
+          myState.mark[4] ? () => {
+            click.push([0, item.lat, item.long, item.name])
+            if (click.length === 2) {
+              const distance = dist(click[0][1], click[0][2], click[1][1], click[1][2])
+              alert("The distance from " + click[0][3] + "to " + click[1][3] + "is " + distance + " meters");
+              click.pop()
+              click.pop()
+              console.log("test")
+            }
+          } : () => {
+            let txt = "Do you want to visit " + item.name + " in Google Maps?";
+            if (item.link.slice(-1) !== '/') {
+              item.link += '/';
+            }
 
-          if (window.confirm(txt) === true) {
-            openInNewTab(item.link + item.data);
-          }
+            if (window.confirm(txt) === true) {
+              openInNewTab(item.link + item.data);
+            }
         }}/>
        })
       }
       {
        myState.mark[1] && 
        locations[1].map(item => {
-        return <Marker longitude={item.long} latitude={item.lat} color="#03C03C" onClick={() => {
-          let txt = "Do you want to visit " + item.name + " in Google Maps?";
-          if (item.link.slice(-1) !== '/') {
-            item.link += '/';
-          }
+        return <Marker longitude={item.long} latitude={item.lat} color="#03C03C" onClick={
+          myState.mark[4] ? () => {
+            click.push([1, item.lat, item.long, item.name])
+            if (click.length === 2) {
+              const distance = dist(click[0][1], click[0][2], click[1][1], click[1][2])
+              alert("The distance from " + click[0][3] + "to " + click[1][3] + "is " + distance + " meters");
+              click.pop()
+              click.pop()
+              console.log("test")
+            }
+          } : () => {
+            let txt = "Do you want to visit " + item.name + " in Google Maps?";
+            if (item.link.slice(-1) !== '/') {
+              item.link += '/';
+            }
 
-          if (window.confirm(txt) === true) {
-            openInNewTab(item.link + item.data);
-          }
+            if (window.confirm(txt) === true) {
+              openInNewTab(item.link + item.data);
+            }
         }}/>
        })
       }
       {
        myState.mark[2] && 
        locations[2].map(item => {
-        return <Marker longitude={item.long} latitude={item.lat} color="#579ABE" onClick={() => {
-          let txt = "Do you want to visit " + item.name + " in Google Maps?";
-          if (item.link.slice(-1) !== '/') {
-            item.link += '/';
-          }
+        return <Marker longitude={item.long} latitude={item.lat} color="#579ABE" onClick={
+          myState.mark[4] ? () => {
+            click.push([2, item.lat, item.long, item.name])
+            if (click.length === 2) {
+              const distance = dist(click[0][1], click[0][2], click[1][1], click[1][2])
+              alert("The distance from " + click[0][3] + "to " + click[1][3] + "is " + distance + " meters");
+              click.pop()
+              click.pop()
+              console.log("test")
+            }
+          } : () => {
+            let txt = "Do you want to visit " + item.name + " in Google Maps?";
+            if (item.link.slice(-1) !== '/') {
+              item.link += '/';
+            }
 
-          if (window.confirm(txt) === true) {
-            openInNewTab(item.link + item.data);
-          }
+            if (window.confirm(txt) === true) {
+              openInNewTab(item.link + item.data);
+            }
         }}/>
        })
       }
       {
        myState.mark[3] && 
        locations[3].map(item => {
-        return <Marker longitude={item.long} latitude={item.lat} color="#976ED7" onClick={() => {
-          let txt = "Do you want to visit " + item.name + " in Google Maps?";
-          if (item.link.slice(-1) !== '/') {
-            item.link += '/';
-          }
+        return <Marker longitude={item.long} latitude={item.lat} color="#976ED7" onClick={
+          myState.mark[4] ? () => {
+            click.push([3, item.lat, item.long, item.name])
+            if (click.length === 2) {
+              const distance = dist(click[0][1], click[0][2], click[1][1], click[1][2])
+              alert("The distance from " + click[0][3] + "to " + click[1][3] + "is " + distance + " meters");
+              click.pop()
+              click.pop()
+              console.log("test")
+            }
+          } : () => {
+            let txt = "Do you want to visit " + item.name + " in Google Maps?";
+            if (item.link.slice(-1) !== '/') {
+              item.link += '/';
+            }
 
-          if (window.confirm(txt) === true) {
-            openInNewTab(item.link + item.data);
-          }
-          }}/>
+            if (window.confirm(txt) === true) {
+              openInNewTab(item.link + item.data);
+            }
+        }}/>
        })
       }
       
