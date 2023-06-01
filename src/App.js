@@ -81,8 +81,8 @@ function App() {
       var R = 6371000; // meters
       var dLat = toRad(lat2-lat1);
       var dLon = toRad(lon2-lon1);
-      var lat1 = toRad(lat1);
-      var lat2 = toRad(lat2);
+      lat1 = toRad(lat1);
+      lat2 = toRad(lat2);
 
       var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
         Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
@@ -118,7 +118,7 @@ function App() {
             click.push([0, item.lat, item.long, item.name])
             if (click.length === 2) {
               const distance = dist(click[0][1], click[0][2], click[1][1], click[1][2])
-              alert("The distance from " + click[0][3] + "to " + click[1][3] + "is " + distance + " meters");
+              alert("The distance from " + click[0][3] + " to " + click[1][3] + "is " + distance + " meters");
               click.pop()
               click.pop()
               console.log("test")
@@ -143,7 +143,7 @@ function App() {
             click.push([1, item.lat, item.long, item.name])
             if (click.length === 2) {
               const distance = dist(click[0][1], click[0][2], click[1][1], click[1][2])
-              alert("The distance from " + click[0][3] + "to " + click[1][3] + "is " + distance + " meters");
+              alert("The distance from " + click[0][3] + " to " + click[1][3] + "is " + distance + " meters");
               click.pop()
               click.pop()
               console.log("test")
@@ -168,7 +168,7 @@ function App() {
             click.push([2, item.lat, item.long, item.name])
             if (click.length === 2) {
               const distance = dist(click[0][1], click[0][2], click[1][1], click[1][2])
-              alert("The distance from " + click[0][3] + "to " + click[1][3] + "is " + distance + " meters");
+              alert("The distance from " + click[0][3] + " to " + click[1][3] + "is " + distance + " meters");
               click.pop()
               click.pop()
               console.log("test")
@@ -193,7 +193,7 @@ function App() {
             click.push([3, item.lat, item.long, item.name])
             if (click.length === 2) {
               const distance = dist(click[0][1], click[0][2], click[1][1], click[1][2])
-              alert("The distance from " + click[0][3] + "to " + click[1][3] + "is " + distance + " meters");
+              alert("The distance from " + click[0][3] + " to " + click[1][3] + "is " + distance + " meters");
               click.pop()
               click.pop()
               console.log("test")
