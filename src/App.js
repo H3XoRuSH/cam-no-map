@@ -3,7 +3,7 @@ import Map, {Marker} from 'react-map-gl';
 import React, { useState } from 'react';
 import Sidenav from './Components/Sidenav';
 import { locations } from "./lib/navData";
-
+import Recobox from "./Components/Recobox"
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiaDN4b3J1c2giLCJhIjoiY2w4MmxqZDRlMDZ3NTN2bXhtZWwyeHlzbCJ9.hq4G-I8Nl8qOJc6jOC8gHA';
@@ -24,6 +24,11 @@ function App() {
   const [myCursor, setMyCursor] = useState('auto')
   
   const [myMove, setMyMove] = useState(true)
+  const [myTour, setMyTour] = useState([])
+
+  const setTour = (current) => {
+    setMyTour(current)
+  } 
 
   const changeCursor = (open) => {
     if (!open) {
@@ -118,7 +123,7 @@ function App() {
             click.push([0, item.lat, item.long, item.name])
             if (click.length === 2) {
               const distance = dist(click[0][1], click[0][2], click[1][1], click[1][2])
-              alert("The distance from " + click[0][3] + " to " + click[1][3] + "is " + distance + " meters");
+              alert("The distance from " + click[0][3] + " to " + click[1][3] + " is " + distance + " meters.");
               click.pop()
               click.pop()
               console.log("test")
@@ -143,7 +148,7 @@ function App() {
             click.push([1, item.lat, item.long, item.name])
             if (click.length === 2) {
               const distance = dist(click[0][1], click[0][2], click[1][1], click[1][2])
-              alert("The distance from " + click[0][3] + " to " + click[1][3] + "is " + distance + " meters");
+              alert("The distance from " + click[0][3] + " to " + click[1][3] + " is " + distance + " meters.");
               click.pop()
               click.pop()
               console.log("test")
@@ -168,7 +173,7 @@ function App() {
             click.push([2, item.lat, item.long, item.name])
             if (click.length === 2) {
               const distance = dist(click[0][1], click[0][2], click[1][1], click[1][2])
-              alert("The distance from " + click[0][3] + " to " + click[1][3] + "is " + distance + " meters");
+              alert("The distance from " + click[0][3] + " to " + click[1][3] + " is " + distance + " meters.");
               click.pop()
               click.pop()
               console.log("test")
@@ -193,7 +198,7 @@ function App() {
             click.push([3, item.lat, item.long, item.name])
             if (click.length === 2) {
               const distance = dist(click[0][1], click[0][2], click[1][1], click[1][2])
-              alert("The distance from " + click[0][3] + " to " + click[1][3] + "is " + distance + " meters");
+              alert("The distance from " + click[0][3] + " to " + click[1][3] + " is " + distance + " meters.");
               click.pop()
               click.pop()
               console.log("test")
@@ -212,7 +217,8 @@ function App() {
       }
       
     </Map>
-    <Sidenav toggle={toggle} recenter={recenter} changeCursor={changeCursor}/>
+    <Sidenav toggle={toggle} recenter={recenter} changeCursor={changeCursor} setTour={setTour} />
+    <Recobox currentTour={myTour}/>
     </div>
   );
 }
