@@ -26,6 +26,11 @@ function App() {
   const [myMove, setMyMove] = useState(true)
   const [myTour, setMyTour] = useState([])
 
+  const [recoActive, setRecoActive] = useState(false);
+  function changeRecoActive () {
+    setRecoActive(!recoActive);
+  }
+
   const setTour = (current) => {
     setMyTour(current)
   } 
@@ -49,24 +54,6 @@ function App() {
     })
   }
   const recenter = () => {
-    // let curlat = myCenter.latitude
-    // let latdlt = (14.12175226941637 - curlat) / 10
-    // let curlng = myCenter.longitude
-    // let lngdlt = (122.94582373167115 - curlng) / 10
-
-    // for (let i = 0; i < 10; i++) {
-    //   setMyCenter(() => {
-    //     return {
-    //       latitude: curlat,
-    //       longitude: curlng,
-    //       zoom: 14
-    //     }
-    //   })
-    //   console.log(curlat)
-    //   console.log(curlng)
-    //   curlat += latdlt
-    //   curlng += lngdlt
-    // } 
     setMyMove(false)   
     setMyCenter(() => {
       return {
@@ -100,6 +87,22 @@ function App() {
       return Value * Math.PI / 180;
   }
 
+  function getColor(val) {
+    if (val === 0) {
+      return "#C23B23";
+    }
+    else if (val === 1) {
+      return "#03C03C";
+    }
+    else if (val === 2) {
+      return "#579ABE";
+    }
+    else if (val === 3) {
+      return "#976ED7";
+    }
+    return "#FFFFFF";
+  }
+
   const click = [];
 
   return (
@@ -118,7 +121,7 @@ function App() {
       {
        myState.mark[0] && 
        locations[0].map(item => {
-        return <Marker longitude={item.long} latitude={item.lat} color="#C23B23" onClick={
+        return <Marker longitude={item.long} latitude={item.lat} color={getColor(0)} onClick={
           myState.mark[4] ? () => {
             click.push([0, item.lat, item.long, item.name])
             if (click.length === 2) {
@@ -143,7 +146,7 @@ function App() {
       {
        myState.mark[1] && 
        locations[1].map(item => {
-        return <Marker longitude={item.long} latitude={item.lat} color="#03C03C" onClick={
+        return <Marker longitude={item.long} latitude={item.lat} color={getColor(1)} onClick={
           myState.mark[4] ? () => {
             click.push([1, item.lat, item.long, item.name])
             if (click.length === 2) {
@@ -168,7 +171,7 @@ function App() {
       {
        myState.mark[2] && 
        locations[2].map(item => {
-        return <Marker longitude={item.long} latitude={item.lat} color="#579ABE" onClick={
+        return <Marker longitude={item.long} latitude={item.lat} color={getColor(2)} onClick={
           myState.mark[4] ? () => {
             click.push([2, item.lat, item.long, item.name])
             if (click.length === 2) {
@@ -193,7 +196,7 @@ function App() {
       {
        myState.mark[3] && 
        locations[3].map(item => {
-        return <Marker longitude={item.long} latitude={item.lat} color="#976ED7" onClick={
+        return <Marker longitude={item.long} latitude={item.lat} color={getColor(3)} onClick={
           myState.mark[4] ? () => {
             click.push([3, item.lat, item.long, item.name])
             if (click.length === 2) {
@@ -215,10 +218,22 @@ function App() {
         }}/>
        })
       }
-      
+      {
+        myTour.length > 0 &&
+        [].concat(...myTour).map((item, index) => {
+          if (index === 0) {
+            return <Marker longitude={item.long} latitude={item.lat} color={getColor(0)}/>
+          }
+          else {
+            const colorIdx = [1, 3, 2];
+            return <Marker longitude={item.long} latitude={item.lat} color={getColor(colorIdx[(index - 1) % 3])}/>
+          }
+          
+        })
+      } 
     </Map>
-    <Sidenav toggle={toggle} recenter={recenter} changeCursor={changeCursor} setTour={setTour} />
-    <Recobox currentTour={myTour}/>
+    <Sidenav toggle={toggle} recenter={recenter} changeCursor={changeCursor} setTour={setTour}/>
+    <Recobox currentTour={myTour} isActive={recoActive} toggleRecobox={changeRecoActive}/>
     </div>
   );
 }

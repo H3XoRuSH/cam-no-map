@@ -45,6 +45,7 @@ export default function Sidenav(props) {
     }
     const toggleDest = () => {
         setopen(true)
+        props.setTour([]);
         setmarker4(!marker4)
     }
     const toggleDist = () => {
@@ -72,7 +73,7 @@ export default function Sidenav(props) {
             console.log(done3);
             const fin0 = locations[0][Math.floor(Math.random() * loc0)]
             
-            let answer = [[fin0, fin0, fin0]];
+            let answer = [[fin0]];
 
             for (let i = 1; i <= num; i++) {
 
