@@ -18,9 +18,6 @@ export default function Sidenav(props) {
     const [marker5, setmarker5] = useState(false)
     const [days, setdays] = useState('')
     const toggleOpen = () => {
-        if (!open) {
-            setdays('');
-        }
         setopen(!open)
     }
     const toggleMarker0 = () => {
@@ -45,6 +42,10 @@ export default function Sidenav(props) {
     const toggleDest = () => {
         setopen(true)
         props.setTour([]);
+
+        if (marker4) {
+            setdays('')
+        }
         setmarker4(!marker4)
     }
     const toggleDist = () => {
