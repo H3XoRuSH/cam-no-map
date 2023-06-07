@@ -31,6 +31,10 @@ function App() {
     setRecoActive(!recoActive);
   }
 
+  function forceRecoActive (val) {
+    setRecoActive(val);
+  }
+
   const setTour = (current) => {
     setMyTour(current)
   } 
@@ -232,7 +236,7 @@ function App() {
         })
       } 
     </Map>
-    <Sidenav toggle={toggle} recenter={recenter} changeCursor={changeCursor} setTour={setTour}/>
+    <Sidenav toggle={toggle} recenter={recenter} changeCursor={changeCursor} setTour={setTour} toggleRecobox={forceRecoActive}/>
     <Recobox currentTour={myTour} isActive={recoActive} toggleRecobox={changeRecoActive}/>
     </div>
   );

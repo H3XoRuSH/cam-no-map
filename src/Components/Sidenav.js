@@ -57,6 +57,7 @@ export default function Sidenav(props) {
         return /^\d+$/.test(value);
     }
     const startTour = () => {
+        props.toggleRecobox(true);
         const num = parseInt(days)
         if (isNumeric(days) && num !== 0 && num <= 3) {
             const loc0 = locations[0].length
