@@ -50,13 +50,13 @@ export default function Sidenav(props) {
     const toggleDist = () => {
         setmarker5(!marker5)
         props.changeCursor(marker5)
+        props.toggle(4)
     }
     const isNumeric = (value) => {
         return /^\d+$/.test(value);
     }
     const startTour = () => {
         const num = parseInt(days)
-        const endl = '\r\n'
         if (isNumeric(days) && num !== 0 && num <= 3) {
             const loc0 = locations[0].length
             const loc1 = locations[1].length
@@ -71,11 +71,10 @@ export default function Sidenav(props) {
             console.log(done2);
             console.log(done3);
             const fin0 = locations[0][Math.floor(Math.random() * loc0)]
-            var message = 'You may want to stay in: ' + fin0.name + endl + endl
             
-            for (let i = 1; i <= num; i++) {
+            let answer = [[fin0, fin0, fin0]];
 
-                message += "Day " + i.toString() + endl;
+            for (let i = 1; i <= num; i++) {
 
                 let fin1 = Math.floor(Math.random() * loc1)
                 while (done1[fin1] === 1) {
@@ -93,19 +92,15 @@ export default function Sidenav(props) {
                 done2[fin2] = 1
                 done3[fin3] = 1
 
-                message += "10:00 - 12:00: " + locations[1][fin1].name + endl;
-                message += "12:00 - 2:00: " + locations[3][fin3].name + endl;
-                message += "2:00 - 4:00: " + locations[2][fin2].name + endl;
-
-                if (i !== num) message += endl;
-            }
-
-            alert(message)
+                answer = [...answer, [locations[1][fin1], locations[3][fin3], locations[2][fin2]]];
+            }  
+            props.setTour(answer)
+            console.log(answer)
         }
         else {
-            alert("Invalid Input (must be positive integer less than 4).")
+            props.setTour([])
+            alert("Invalid Input, must be positive integer less than 4.")
         }
-        
     }
     const changeDays = (evt) => {
         const val = evt.target.value

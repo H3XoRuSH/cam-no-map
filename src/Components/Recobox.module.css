@@ -1,20 +1,77 @@
-.recobox {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 300px;
-  background-color: rgb(10,25,41);
-  border-radius: 8px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+.reco_Box {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    width: 450px;
+    z-index: 999999;
+    opacity: 90%;
+    transition: all 0.3s ease-in-out;
+
 }
 
-.recobox-header {
-  padding: 16px;
-  background-color: rgb(10,25,41);
-  color: #fff;
-  cursor: pointer;
+.reco_BoxClosed{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    width: 250px;
+    z-index: 999999;
+    transition: all 0.3s ease-in-out;
+    opacity: 90%;
 }
 
-.recobox-body {
-  padding: 16px;
+.box_head {
+    background: rgb(10, 25, 41);
+    background-color: rgb(10, 25, 41);
+    padding: 15px;
+    color: white;
+    font-weight: 450;
+    cursor: pointer;
+    border-radius: 5px 5px 0px 0px;
+    font-family: 'Segoe UI';
+    font-size: 16px;
 }
+
+.tour_body {
+    background: white;
+    min-height: 0px;
+    overflow: hidden;
+    opacity: 95%;
+    font-size: 14px;
+    padding: 12px;
+    font: 'Segoe UI';
+    line-height: 160%;
+    padding-bottom: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.tour_body_minimized{
+    background: white;
+    min-height: 0px;
+    overflow: hidden;
+    opacity: 95%;
+    font-size: 14px;
+    padding: 12px;
+    font: 'Segoe UI';
+    line-height: 160%;
+    padding-bottom: 10px;
+    transition: all 0.3s ease-in-out;
+    height: 100px;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+}
+  
+.minimize {
+    float: right;
+    cursor: pointer;
+    padding-right: 5px;
+}
+
+br {
+    display: block;
+    content: "";
+    border-bottom: 2px solid transparent;
+}
+
