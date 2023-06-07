@@ -22,7 +22,6 @@ export default function Sidenav(props) {
             setdays('');
         }
         setopen(!open)
-        setmarker4(false)
     }
     const toggleMarker0 = () => {
         setmarker0(!marker0)
@@ -60,7 +59,7 @@ export default function Sidenav(props) {
         const num = parseInt(days)
         if (isNumeric(days) && num !== 0 && num <= 3) {
             props.toggleRecobox(true);
-            
+
             const loc0 = locations[0].length
             const loc1 = locations[1].length
             const loc2 = locations[2].length
@@ -144,13 +143,13 @@ export default function Sidenav(props) {
             </button>
             <span className={styles.linkText}>Tour</span>
         </div>
-        {marker4 && <div className={styles.sideitem}>
+        {open && <div className={styles.sideitem}>
             Days: 
             <input className={styles.inp} value={days} onChange={evt => changeDays(evt)}></input>
             
-            <button className={styles.marker4} onClick={startTour}>
+            {<button className={styles.marker4} onClick={startTour}>
                 <StartIcon/>
-            </button>
+            </button>}
         </div>}
         <div className={styles.sideitem}>
             <button className={styles.marker4} onClick={toggleDist}>
